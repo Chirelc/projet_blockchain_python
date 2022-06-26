@@ -1,6 +1,6 @@
 CPPFLAGS += -I /usr/include/python3.7m
 LIBS=-lpython3.7m 
-COMPOSANT =composant_4
+COMPOSANT=composant_4
 
 LIBSO = ${COMPOSANT}.so
 LIBSO_OBJS = ${COMPOSANT}.o
