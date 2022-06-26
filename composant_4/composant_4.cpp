@@ -48,17 +48,14 @@ class Ckd
           Ckd();
           //uint32 to make sure that i is 32 bytes
           void initialize(std::string &Private_Key,std::string &Chaine_Code,uint32_t  Index_Number) {
-            if(Index_Number>2**31){
-
-            }
-            std::string Index_Number_B=" ";
             // converti int en 4 byte sequence
             std::string Index_Number_B =intToByte(Index_Number);
 
             //resSer= 0x00 || ser256(kpar) || ser32(i)
-            resSer=Private_Key+Index_Number_B;
+            string resSer=Private_Key+Index_Number_B;
             // hmT=hmac_sha512(Chaine_Code,resSer)
             //convert the L part of hmT on binary
+            string hmT[2]={"aab","97GY"};
             string R_B=stringToBin(hmT[1]);
             Child_D_Key = R_B+Private_Key;
 
@@ -66,15 +63,15 @@ class Ckd
         const std::string &getCkd() const {
             return Child_D_Key; }
           ~Ckd() {}
-  }
+  };
 
   namespace py = pybind11;
 
   PYBIND11_MODULE(composant_4,CKD) {
-    py::class_<CKD>(composant_4, "CKD")
+    py::class_<Ckd>(CKD,"Ckd")
     /*py::class_<Cle>(Key, "CKD",py::dynamic_attr())*/
        	.def(py::init<>())
  	      .def("initialize", &Ckd::initialize)
-        .def("getCkd", &Ckd::getCkd)
+        .def("getCkd", &Ckd::getCkd);
   }
 
