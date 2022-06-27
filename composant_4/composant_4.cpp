@@ -5,7 +5,14 @@
 #include <iostream>
 #include <bitset>
 using namespace std;
-
+string int_to_hex( int i )
+{
+std::stringstream sstream;
+sstream << std::hex << i;
+std::string result = sstream.str();
+//const char *res=result.c_str();
+return result;
+}
 
 string intToByte( uint32_t n )
 {
@@ -49,10 +56,12 @@ class Ckd
           //uint32 to make sure that i is 32 bytes
           void initialize(std::string &Private_Key,std::string &Chaine_Code,uint32_t  Index_Number) {
             // converti int en 4 byte sequence
-            std::string Index_Number_B =intToByte(Index_Number);
+            string  Index_Number_H =int_to_hex(Index_Number);
 
             //resSer= 0x00 || ser256(kpar) || ser32(i)
-            string resSer=Private_Key+Index_Number_B;
+            string resSer=Private_Key+Index_Number_H;
+	    const char*resSer_c=resSer.c_str();
+
             // hmT=hmac_sha512(Chaine_Code,resSer)
             //convert the L part of hmT on binary
             string hmT[2]={"aab","97GY"};
