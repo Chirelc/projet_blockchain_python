@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <bitset>
+#include<sstream>
 using namespace std;
 string int_to_hex( int i )
 {
