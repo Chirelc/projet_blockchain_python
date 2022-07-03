@@ -1,5 +1,5 @@
 #include <pybind11/pybind11.h>
-//#include <hmac_sha512_component.h>
+#include "hmac_sha512/hmac_sha512_component/hmac_sha512.h"
 #include <string>
 #include <stdexcept>
 #include <iostream>
