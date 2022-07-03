@@ -1,6 +1,9 @@
 import composant_4
 monckd=composant_4.ckd()
-monckd.initialize(,"42d613ecd281dccfecd8b279f997a73e4812f89458693744796f82ce5f76af8600df9fcf8c047c2a8f3c112d88ce44ba6baacf67b9e95157c2e57cc1587fb40f","600df9fcf8c047C2a8f3c112d88ce44ba6baacf67b9e95157c2e57cc1587fb40f",3*10**9)
+chaine_code="600df9fcf8c047C2a8f3c112d88ce44ba6baacf67b9e95157c2e57cc1587fb40f"
+key="42d613ecd281dccfecd8b279f997a73e4812f89458693744796f82ce5f76af8600df9fcf8c047c2a8f3c112d88ce44ba6baacf67b9e95157c2e57cc1587fb40f"
+indexN=3*10**9
+monckd.initialize(key,chaine_code,indexN)
 output ="xprv9s21ZrQH143K3D2R2fkS7RmiyHVf5LBH5Dk4PfpW9XguJtHGZ4H9yYNbxU56a6YR3M8oaTLmQomRhWgQqqXr9pKcqYhpqn8kzNXcyJZM1NN"
 check=monckd.getCkd();
 res=outpout==check[0]

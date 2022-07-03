@@ -57,17 +57,21 @@ class Ckd
           //uint32 to make sure that i is 32 bytes
           void initialize(std::string &Private_Key,std::string &Chaine_Code,uint32_t  Index_Number) {
             // converti int en 4 byte sequence
-            string  Index_Number_H =int_to_hex(Index_Number);
+            string  index_Number_H =int_to_hex(Index_Number);
 
             //resSer= 0x00 || ser256(kpar) || ser32(i)
-            string resSer=Private_Key+Index_Number_H;
-	    const char*resSer_c=resSer.c_str();
+            string resSer=Private_Key+index_Number_H;
+	   // const char*resSer_c=resSer.c_str();
 
-            // hmT=hmac_sha512(Chaine_Code,resSer)
+            string  hmT=hmac_sha512(Chaine_Code,resSer);
+	    //hmac ne retourne plus un tableau de 2 string 
+	    //il faut donc couper le string en 2 et prendre la première partie 
+	    string hmTR=hmT.substr(0,hmT.length()/2);
             //convert the L part of hmT on binary
-            string hmT[2]={"aab","97GY"};
-            string R_B=stringToBin(hmT[1]);
-            Child_D_Key = R_B+Private_Key;
+            //string hmT[2]={"aab","97GY"};
+	    //string hmTI=hmT[1]+index_Number_H;
+	    string hmTI=hmTR+index_Number_H;
+            Child_D_Key =Private_Key+hmTI;
 
         }
         const std::string &getCkd() const {
